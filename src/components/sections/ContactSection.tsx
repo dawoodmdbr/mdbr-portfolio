@@ -111,7 +111,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="snap-section">
+    <section id="contact" className="snap-section hero-bg-noise">
       <EasterEgg />
 
       <div className="w-full max-w-7xl mx-auto px-8 lg:px-16">

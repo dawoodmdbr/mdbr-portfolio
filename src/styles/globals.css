@@ -36,22 +36,50 @@ body {
 /* ─── Custom cursor ──────────────────────────────────────── */
 #cursor-dot {
   position: fixed; top: 0; left: 0;
-  width: 5px; height: 5px;
+  width: 30px; height: 30px;
   background: #fff; border-radius: 50%;
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
 }
-#cursor-ring {
+/* #cursor-ring {
   position: fixed; top: 0; left: 0;
   width: 30px; height: 30px;
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 50%;
   pointer-events: none; z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s ease;
+  transition: width 1s var(--ease), height 0.3s var(--ease), border-color 1s ease;
 }
-#cursor-ring.hovered { width: 46px; height: 46px; border-color: rgba(255,255,255,0.5); }
+#cursor-ring.hovered { width: 46px; height: 46px; border-color: rgba(255,255,255,0.5); } */
+
+#cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  /* transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s ease; */
+  transition: all 0s ease-in-out;
+}
+
+#cursor-ring.hovered {
+  width: 45px; height: 45px;
+  border-color: rgba(255,255,255,0.5);
+  animation: ring-pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes ring-pulse {
+  0%, 50%, 100% {
+    width: 50px; height: 50px;
+     box-shadow: 0 0 0 0 rgba(255,255,255,0.15); 
+    }
+  25% { 
+    width: 45px; height: 45px;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0); 
+  }
+}
 
 /* ─── Section snap ───────────────────────────────────────── */
 .snap-wrap {
@@ -167,7 +195,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);

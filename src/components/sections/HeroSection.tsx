@@ -83,7 +83,7 @@ export default function HeroSection() {
     ─────────────────────────────────────────────────────── */
 
   return (
-    <section id="hero" className="snap-section">
+    <section id="hero" className="snap-section hero-bg-grid">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 lg:gap-14 items-center">
 
