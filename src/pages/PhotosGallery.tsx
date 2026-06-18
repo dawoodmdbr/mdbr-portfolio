@@ -2,15 +2,28 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-// Add your images to public/gallery/ and list them here
-const PHOTOS = [
-  { src: '/gallery/photo-1.jpg', alt: 'Photo 1' },
-  { src: '/gallery/photo-2.jpg', alt: 'Photo 2' },
-  { src: '/gallery/photo-3.jpg', alt: 'Photo 3' },
-  { src: '/gallery/photo-4.jpg', alt: 'Photo 4' },
-  { src: '/gallery/photo-5.jpg', alt: 'Photo 5' },
-  // keep adding: { src: '/gallery/photo-N.jpg', alt: 'Caption' }
-]
+// Auto-import every image in src/assets/gallery/ — no manual list to maintain.
+// NOTE: this only works for files under `src/`. Files in `public/` are copied
+// verbatim at build time and aren't visible to import.meta.glob, so move your
+// photos into src/assets/gallery/ for this to pick them up.
+const modules = import.meta.glob('/src/assets/gallery/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
+interface Photo {
+  src: string
+  alt: string
+}
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
 
 interface ExifData {
   shutter?: string
@@ -37,11 +50,21 @@ async function readExif(src: string): Promise<ExifData | null> {
 }
 
 export default function PhotosGallery() {
-  const [idx, setIdx]         = useState(0)
-  const [exif, setExif]       = useState<ExifData | null>(null)
-  const [errors, setErrors]   = useState<Record<number, boolean>>({})
-  const [loaded, setLoaded]   = useState(false)
-  const total = PHOTOS.length
+  // Shuffle once per mount (lazy initializer), so the order doesn't reshuffle on re-render
+  const [photos] = useState<Photo[]>(() =>
+    shuffle(
+      Object.entries(modules).map(([path, src]) => ({
+        src,
+        alt: path.split('/').pop()?.replace(/\.[^.]+$/, '') ?? 'Photo',
+      }))
+    )
+  )
+
+  const [idx, setIdx]       = useState(0)
+  const [exif, setExif]     = useState<ExifData | null>(null)
+  const [errors, setErrors] = useState<Record<number, boolean>>({})
+  const [loaded, setLoaded] = useState(false)
+  const total = photos.length
 
   const goTo = useCallback((i: number) => {
     setIdx(i); setExif(null); setLoaded(false)
@@ -61,11 +84,22 @@ export default function PhotosGallery() {
 
   const onLoad = useCallback(async () => {
     setLoaded(true)
-    const data = await readExif(PHOTOS[idx].src)
+    const data = await readExif(photos[idx].src)
     setExif(data)
-  }, [idx])
+  }, [idx, photos])
 
-  const photo    = PHOTOS[idx]
+  if (total === 0) {
+    return (
+      <div style={{ minHeight: '100vh', background: 'var(--bg)', color: 'var(--accent)' }}
+           className="flex items-center justify-center">
+        <p className="font-mono text-xs" style={{ color: 'var(--muted)' }}>
+          No images found in src/assets/gallery/
+        </p>
+      </div>
+    )
+  }
+
+  const photo    = photos[idx]
   const hasError = errors[idx]
   const hasExif  = loaded && exif && (exif.shutter || exif.aperture || exif.iso)
 
@@ -102,7 +136,7 @@ export default function PhotosGallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.12, ease: [0.16, 1, 0.3, 1] }}
               className="w-full h-full"
             >
               {hasError ? (
@@ -119,7 +153,7 @@ export default function PhotosGallery() {
                 <img
                   src={photo.src}
                   alt={photo.alt}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   onLoad={onLoad}
                   onError={() => setErrors(p => ({ ...p, [idx]: true }))}
                   draggable={false}
@@ -162,7 +196,7 @@ export default function PhotosGallery() {
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
+                transition={{ duration: 0.15 }}
                 className="flex items-center justify-between"
               >
                 <span className="font-mono text-xs" style={{ color: 'var(--muted)' }}>
@@ -181,7 +215,7 @@ export default function PhotosGallery() {
 
         {/* Progress pills */}
         <div className="flex items-center gap-1.5 flex-wrap justify-center" style={{ maxWidth: '900px' }}>
-          {PHOTOS.map((_, i) => (
+          {photos.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
