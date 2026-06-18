@@ -3,7 +3,6 @@ import { useMobile }    from './hooks/useMobile'
 import Cursor           from './components/ui/Cursor'
 import HomePage         from './pages/HomePage'
 import PhotosGallery    from './pages/PhotosGallery'
-import MobileBlock      from './pages/MobileBlock'
 
 export default function App() {
   const mobile = useMobile()
