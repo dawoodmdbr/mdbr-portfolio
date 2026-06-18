@@ -5,7 +5,7 @@ import quotesRaw from '../../data/quotes.json'
 import type { Quote } from '../../types'
 
 /* ─── Roles ─────────────────────────────────────────────── */
-const ROLES = ['Frontend Developer', 'Software Engineer', 'Photographer']
+const ROLES = ['Frontend Developer', 'Software Engineer', 'Photographer', 'MERN Stack Dev']
 
 /* ─── Tagline — pick one, comment out the rest ──────────── */
 const TAGLINE =
@@ -48,7 +48,7 @@ export default function HeroSection() {
     const id = setInterval(() => {
       setRS(false)
       setTimeout(() => { setRi(p => (p + 1) % ROLES.length); setRS(true) }, 380)
-    }, 3200)
+    }, 2000)
     return () => clearInterval(id)
   }, [])
 
@@ -66,7 +66,7 @@ export default function HeroSection() {
   }, [quotes.length])
 
   useEffect(() => {
-    const id = setInterval(shuffle, 11000)
+    const id = setInterval(shuffle, 15000)
     return () => clearInterval(id)
   }, [shuffle])
 

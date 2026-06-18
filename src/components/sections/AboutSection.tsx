@@ -28,9 +28,9 @@ const STATS = [
 
 const NOW = [
   { icon: '📍', text: 'Chiniot-Faisalabad, Pakistan' },
-  { icon: '🎓', text: 'BSE — FAST-NUCES · Year 1'    },
+  { icon: '🎓', text: 'BS Software Engineering — FAST-NUCES · 3rd Year'    },
   { icon: '🔍', text: 'Open to internship opportunities' },
-  { icon: '📸', text: 'FPS · FAST Photography Society'  },
+  { icon: '📸', text: 'Photography Head · FAST Photography Society'  },
 ]
 
 export default function AboutSection() {
