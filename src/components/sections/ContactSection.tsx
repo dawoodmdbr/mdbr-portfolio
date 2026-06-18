@@ -132,7 +132,7 @@ export default function ContactSection() {
             </motion.h2>
             <motion.p
               variants={fadeUp}
-              className="text-sm leading-[1.9] max-w-md"
+              className="text-base leading-[1.85] max-w-md"
               style={{ color: 'var(--muted)' }}
             >
               Open to internships, freelance projects, and interesting conversations.
@@ -143,7 +143,7 @@ export default function ContactSection() {
             <motion.div variants={fadeUp} className="flex items-center gap-3 flex-wrap">
               <a
                 href={`mailto:${EMAIL}`}
-                className="font-mono text-[0.78rem] transition-opacity duration-200 hover:opacity-60"
+                className="font-mono text-sm transition-opacity duration-200 hover:opacity-60"
                 style={{ color: 'var(--accent)' }}
               >
                 {EMAIL}
@@ -208,7 +208,7 @@ export default function ContactSection() {
                       {s.icon}
                     </span>
                     <div className="flex flex-col gap-0.5 min-w-0">
-                      <span className="text-sm font-medium" style={{ color: 'var(--white)' }}>{s.label}</span>
+                      <span className="text-base font-medium" style={{ color: 'var(--white)' }}>{s.label}</span>
                       <span className="font-mono text-[0.65rem]" style={{ color: 'var(--muted)' }}>{s.handle}</span>
                     </div>
                     <svg
@@ -227,7 +227,7 @@ export default function ContactSection() {
                   >
                     <span style={{ color: 'var(--muted)' }} className="flex-shrink-0">{s.icon}</span>
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-medium" style={{ color: 'var(--white)' }}>{s.label}</span>
+                      <span className="text-base font-medium" style={{ color: 'var(--white)' }}>{s.label}</span>
                       <span className="font-mono text-[0.65rem]" style={{ color: 'var(--muted)' }}>unavailable</span>
                     </div>
                     <span className="ml-auto font-mono text-[0.6rem]" style={{ color: 'var(--subtle)' }}>disabled</span>

@@ -82,7 +82,7 @@ export default function ExperienceSection() {
                   {/* top row */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 pr-6">
                     <div className="flex flex-col gap-0.5">
-                      <h3 className="text-sm font-semibold tracking-tight" style={{ color: 'var(--white)' }}>
+                      <h3 className="text-base font-semibold tracking-tight" style={{ color: 'var(--white)' }}>
                         {exp.role}
                       </h3>
                       <span className="font-mono text-[0.63rem] tracking-wide" style={{ color: 'var(--muted)' }}>
@@ -115,7 +115,7 @@ export default function ExperienceSection() {
                       <div key={j} className="flex items-start gap-3">
                         <span className="w-1 h-1 rounded-full mt-[0.45rem] flex-shrink-0"
                               style={{ background: 'var(--subtle)' }} />
-                        <p className="text-[0.82rem] leading-relaxed" style={{ color: 'var(--muted)' }}>
+                        <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
                           {line}
                         </p>
                       </div>

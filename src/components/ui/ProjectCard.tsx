@@ -134,10 +134,10 @@ export default function ProjectCard({ project, index }: Props) {
         className="flex flex-col gap-3 p-4"
         style={{ pointerEvents: imgHov ? 'none' : 'auto' }}
       >
-        <h3 className="text-sm font-semibold tracking-tight" style={{ color: 'var(--white)' }}>
+        <h3 className="text-base font-semibold tracking-tight" style={{ color: 'var(--white)' }}>
           {project.title}
         </h3>
-        <p className="text-xs leading-relaxed line-clamp-2" style={{ color: 'var(--muted)' }}>
+        <p className="text-sm leading-relaxed line-clamp-2" style={{ color: 'var(--muted)' }}>
           {project.overview}
         </p>
         <div className="flex items-start gap-2">

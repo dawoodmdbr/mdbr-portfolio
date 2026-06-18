@@ -56,7 +56,7 @@ export default function AboutSection() {
                 <motion.p
                   key={i}
                   variants={fadeUp}
-                  className="text-sm leading-[1.9]"
+                  className="text-base leading-[1.85]"
                   style={{ color: 'var(--muted)' }}
                 >
                   {highlight(p)}
@@ -77,8 +77,8 @@ export default function AboutSection() {
             >
               {STATS.map(s => (
                 <motion.div key={s.l} variants={fadeUp} className="card p-5">
-                  <p className="text-[1.7rem] font-bold tracking-tight" style={{ color: 'var(--white)' }}>{s.v}</p>
-                  <p className="font-mono text-[0.62rem] tracking-widest uppercase mt-1" style={{ color: 'var(--muted)' }}>{s.l}</p>
+                  <p className="text-[1.8rem] font-bold tracking-tight" style={{ color: 'var(--white)' }}>{s.v}</p>
+                  <p className="font-mono text-xs tracking-widest uppercase mt-1" style={{ color: 'var(--muted)' }}>{s.l}</p>
                 </motion.div>
               ))}
             </motion.div>

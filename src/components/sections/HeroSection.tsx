@@ -4,10 +4,10 @@ import { stagger, fadeUp } from '../../animations/variants'
 import quotesRaw from '../../data/quotes.json'
 import type { Quote } from '../../types'
 
-/* ─── Roles ────────────────────────────────────────────── */
+/* ─── Roles ─────────────────────────────────────────────── */
 const ROLES = ['Frontend Developer', 'Software Engineer', 'Photographer']
 
-/* ─── Tagline — pick one, comment out the rest ─────────── */
+/* ─── Tagline — pick one, comment out the rest ──────────── */
 const TAGLINE =
   'I build things people actually want to use.'
   // 'Turning caffeine and keystrokes into products.'
@@ -16,9 +16,9 @@ const TAGLINE =
   // 'From wireframe to deployment — I own the whole thing.'
   // 'Making the web feel like it was worth the wait.'
   // 'I solve problems. The UI just makes it obvious.'
-  // 'detail-obsessed developer with a camera problem.'
+  // 'Detail-obsessed developer with a camera problem.'
 
-/* ─── Typewriter hook ───────────────────────────────────── */
+/* ─── Typewriter hook ────────────────────────────────────── */
 function useTypewriter(text: string, speed = 42) {
   const [out, setOut] = useState('')
   const [done, setDone] = useState(false)
@@ -36,12 +36,12 @@ function useTypewriter(text: string, speed = 42) {
 
 /* ─── Component ─────────────────────────────────────────── */
 export default function HeroSection() {
-  const [ri, setRi]     = useState(0)
-  const [rShow, setRS]  = useState(true)
-  const [qi, setQi]     = useState(0)
-  const [qShow, setQS]  = useState(true)
+  const [ri, setRi]    = useState(0)
+  const [rShow, setRS] = useState(true)
+  const [qi, setQi]    = useState(0)
+  const [qShow, setQS] = useState(true)
   const quotes: Quote[] = quotesRaw.quotes
-  const { out, done }   = useTypewriter(TAGLINE)
+  const { out, done }  = useTypewriter(TAGLINE)
 
   /* Role cycle */
   useEffect(() => {
@@ -56,7 +56,11 @@ export default function HeroSection() {
   const shuffle = useCallback(() => {
     setQS(false)
     setTimeout(() => {
-      setQi(p => { let n = p; while (n === p && quotes.length > 1) n = Math.floor(Math.random() * quotes.length); return n })
+      setQi(p => {
+        let n = p
+        while (n === p && quotes.length > 1) n = Math.floor(Math.random() * quotes.length)
+        return n
+      })
       setQS(true)
     }, 280)
   }, [quotes.length])
@@ -68,13 +72,23 @@ export default function HeroSection() {
 
   const q = quotes[qi]
 
+  /*
+    ── Hero background ─────────────────────────────────────
+    To apply a background, add one of these classes to the <section> below:
+      "hero-bg-grid"   → subtle dot grid  (Vercel style)
+      "hero-bg-noise"  → film grain noise texture
+      "hero-bg-orb"    → soft radial gradient orb behind quote card
+    These classes are defined in src/styles/globals.css.
+    Example: <section id="hero" className="snap-section hero-bg-grid">
+    ─────────────────────────────────────────────────────── */
+
   return (
     <section id="hero" className="snap-section">
-      <div className="w-full max-w-7xl mx-auto px-8 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-14 items-center">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 lg:gap-14 items-center">
 
           {/* ── LEFT ──────────────────────────────────────── */}
-          <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-7">
+          <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-6 sm:gap-7">
 
             {/* Eyebrow */}
             <motion.span variants={fadeUp} className="eyebrow">
@@ -84,11 +98,11 @@ export default function HeroSection() {
             {/* Name */}
             <motion.h1 variants={fadeUp} className="display">
               Mian Dawood<br />
-              <span style={{ color: 'rgba(232,232,232,0.35)' }}>bin Rafay</span>
+              <span style={{ color: 'rgba(232,232,232,0.32)' }}>bin Rafay</span>
             </motion.h1>
 
             {/* Animated role */}
-            <motion.div variants={fadeUp} className="flex items-center gap-2.5 h-6">
+            <motion.div variants={fadeUp} className="flex items-center gap-2.5 h-7">
               <span className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
               <AnimatePresence mode="wait">
                 {rShow && (
@@ -98,7 +112,7 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -5 }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-mono text-sm"
+                    className="font-mono text-base"
                     style={{ color: 'var(--muted)' }}
                   >
                     {ROLES[ri]}
@@ -110,12 +124,12 @@ export default function HeroSection() {
             {/* Typewriter tagline */}
             <motion.p
               variants={fadeUp}
-              className="text-lg font-light min-h-[1.8rem]"
-              style={{ color: 'rgba(232,232,232,0.72)' }}
+              className="text-xl font-light min-h-[2rem]"
+              style={{ color: 'rgba(232,232,232,0.75)' }}
             >
               {out}
               {!done && (
-                <span className="inline-block w-0.5 h-[1.1rem] bg-white/55 ml-0.5 animate-blink align-middle" />
+                <span className="inline-block w-0.5 h-5 bg-white/55 ml-0.5 animate-blink align-middle" />
               )}
             </motion.p>
 
@@ -126,7 +140,7 @@ export default function HeroSection() {
                 className="btn-white"
                 onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView() }}
               >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
                   <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
                 </svg>
@@ -140,7 +154,7 @@ export default function HeroSection() {
                 Contact Me
               </a>
               <a href="/resume.pdf" download className="btn-ghost">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                   <path d="M12 3v14M6 13l6 6 6-6M5 21h14"/>
                 </svg>
                 Resume
@@ -162,21 +176,26 @@ export default function HeroSection() {
 
               {/* Header */}
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[0.62rem] tracking-widest uppercase"
+                <span className="font-mono text-sm tracking-widest uppercase"
                       style={{ color: 'var(--muted)' }}>
                   {q?.category}
                 </span>
+
+                {/* Shuffle button — bigger, white background */}
                 <button
                   onClick={shuffle}
-                  className="w-7 h-7 rounded-md flex items-center justify-center
-                             border border-[var(--border)] hover:bg-white/6
-                             transition-colors duration-200 group"
                   aria-label="Shuffle quote"
+                  className="w-9 h-9 rounded-lg flex items-center justify-center
+                             transition-all duration-200 hover:opacity-80 active:scale-95"
+                  style={{
+                    background: 'var(--white)',
+                    border: 'none',
+                  }}
                 >
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                       stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                       className="transition-transform duration-300 group-hover:rotate-180"
-                       style={{ color: 'var(--muted)' }}>
+                  <svg
+                    width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="#080808" strokeWidth="2.2" strokeLinecap="round"
+                  >
                     <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
                     <path d="M3 3v5h5"/>
                   </svg>
@@ -194,26 +213,31 @@ export default function HeroSection() {
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     className="flex flex-col gap-4"
                   >
-                    <span className="text-3xl leading-none select-none"
-                          style={{ color: 'rgba(255,255,255,0.07)', fontFamily: 'Georgia, serif' }}>
+                    <span
+                      className="text-4xl leading-none select-none"
+                      style={{ color: 'rgba(255,255,255,0.07)', fontFamily: 'Georgia, serif' }}
+                    >
                       "
                     </span>
-                    <p className="text-[0.92rem] font-light leading-relaxed -mt-3"
-                       style={{ color: 'rgba(232,232,232,0.82)' }}>
+                    <p
+                      className="text-base font-light leading-relaxed -mt-3"
+                      style={{ color: 'rgba(232,232,232,0.85)' }}
+                    >
                       {q?.quote}
                     </p>
                     <div className="rule" />
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[0.62rem] tracking-wide"
-                            style={{ color: 'var(--muted)' }}>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="font-mono text-sm" style={{ color: 'var(--muted)' }}>
                         {q?.source}
                       </span>
-                      <span className="font-mono text-[0.6rem] px-2 py-0.5 rounded-full"
-                            style={{
-                              background: 'rgba(255,255,255,0.04)',
-                              border: '1px solid var(--border)',
-                              color: 'var(--muted)',
-                            }}>
+                      <span
+                        className="font-mono text-xs px-2.5 py-1 rounded-full whitespace-nowrap"
+                        style={{
+                          background: 'rgba(255,255,255,0.04)',
+                          border: '1px solid var(--border)',
+                          color: 'var(--muted)',
+                        }}
+                      >
                         {q?.theme}
                       </span>
                     </div>
@@ -230,7 +254,7 @@ export default function HeroSection() {
               className="flex items-center justify-end gap-2 mt-4"
               style={{ color: 'rgba(107,107,107,0.5)' }}
             >
-              <span className="font-mono text-[0.6rem] tracking-widest uppercase">scroll</span>
+              <span className="font-mono text-xs tracking-widest uppercase">scroll</span>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
                    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                 <path d="M12 3v18M7 16l5 5 5-5"/>

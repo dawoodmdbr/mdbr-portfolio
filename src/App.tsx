@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       {!mobile && <Cursor />}
       <Routes>
-        <Route path="/"               element={mobile ? <MobileBlock /> : <HomePage />} />
+        <Route path="/"               element={mobile ? <HomePage /> : <HomePage />} />
         <Route path="/photos-gallery" element={<PhotosGallery />} />
       </Routes>
     </BrowserRouter>

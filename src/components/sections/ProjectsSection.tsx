@@ -6,7 +6,7 @@ import ProjectCard from '../ui/ProjectCard'
 export default function ProjectsSection() {
   return (
     <section id="projects" className="snap-section projects-snap py-24">
-      <div className="w-full max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Header */}
         <motion.div
@@ -20,15 +20,19 @@ export default function ProjectsSection() {
           <motion.h2 variants={fadeUp} className="heading">Things I've built.</motion.h2>
           <motion.p
             variants={fadeUp}
-            className="text-sm max-w-md"
+            className="text-base max-w-md"
             style={{ color: 'var(--muted)' }}
           >
-            Hover the image to preview links. Each card hides the text so the screenshot can breathe.
+            Hover the image to preview links.
           </motion.p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        {/*
+          Responsive grid:
+          - xs/mobile  : 2 columns  (2fr 2fr — 1 card per row is too wide)
+          - lg desktop : 3 columns  (as requested: 3fr layout)
+        */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}

@@ -30,7 +30,7 @@ export default function TopNav({ onNav }: Props) {
           <a
             href="/resume.pdf"
             download
-            className="font-mono text-[0.67rem] tracking-widest uppercase
+            className="font-mono text-xs tracking-widest uppercase
                        text-white/40 hover:text-white/80 transition-colors duration-200"
           >
             Resume ↓
@@ -40,7 +40,7 @@ export default function TopNav({ onNav }: Props) {
             href="https://github.com/dawoodmdbr"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[0.67rem] tracking-widest uppercase
+            className="font-mono text-xs tracking-widest uppercase
                        text-white/40 hover:text-white/80 transition-colors duration-200"
           >
             GitHub
