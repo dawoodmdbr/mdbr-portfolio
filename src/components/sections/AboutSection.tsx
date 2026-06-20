@@ -4,10 +4,10 @@ import { stagger, fadeUp, viewport } from '../../animations/variants'
 const KEYWORDS = ['FAST-NUCES', 'Teaching Assistant', 'Enigmatix Global', 'React', 'TypeScript']
 
 const PARAS = [
-  `I'm a first-year Software Engineering student at FAST-NUCES, Faisalabad — learning fast, shipping faster. What started as curiosity about how websites worked turned into a full obsession with building them properly.`,
-  `Before my first year was over, I was already a Teaching Assistant for Dr. Tahir Farooq — helping students debug their first C++ programs in Programming Fundamentals, then moving into OOP the semester after. Teaching forces you to actually understand things, not just copy them.`,
-  `Over summer 2024, I interned at Enigmatix Global as a Web Development Intern. My first real production codebase, real deadlines, and real code review. I came back with a sharper eye and a longer checklist.`,
-  `Now I build full-stack web applications with React and TypeScript at the front and Node or Flask at the back — with enough attention to detail that people notice. I care about the gap between "it works" and "it's good."`,
+  `I'm a Software Engineering student at FAST-NUCES, Faisalabad, focused on building modern, scalable web applications and understanding the engineering behind them.`,
+  `What started as curiosity about how websites worked turned into a passion for building products that are functional, scalable, and thoughtfully designed. I work mainly with React, TypeScript, and modern frontend technologies, while also exploring full-stack development with Node.js, Express, and Flask.`,
+  `Along the way, I’ve gained experience through a Web Development Internship at Enigmatix Global and my role as a Teaching Assistant at FAST-NUCES. Working closely with students helped me notice recurring problems in academic workflows, which led me to build two tools focused on improving those processes through practical software solutions.`,
+  `I enjoy turning ideas and problems into clean, user-focused applications. From designing responsive interfaces to building complete systems, I focus on the details that transform "it works" into "it works well."`,
 ]
 
 function highlight(text: string) {
