@@ -221,7 +221,7 @@ body {
   background-repeat: repeat;
   background-size: 200px 200px;
 }
-.hero-bg-noise > * { position: relative; z-index: 1; }
+.hero-bg-noise > * {  z-index: 1; }
 
 /*
    ── OPTION C: Radial gradient orb (behind quote card) ─────

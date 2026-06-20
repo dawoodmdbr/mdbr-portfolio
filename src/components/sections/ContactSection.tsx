@@ -180,7 +180,7 @@ export default function ContactSection() {
             <motion.p
               variants={fadeUp}
               className="font-mono text-[0.6rem] tracking-widest"
-              style={{ color: 'rgba(58,58,58,0.8)' }}
+              style={{ color: 'rgba(58,58,58,0.8)', zIndex: 100 }}
             >
               press F for something
             </motion.p>
