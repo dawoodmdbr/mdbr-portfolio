@@ -29,8 +29,8 @@ export default function HomePage() {
       <div ref={wrapRef} className="snap-wrap">
         <HeroSection />
         <AboutSection />
-        <ExperienceSection />
         <ProjectsSection />
+        <ExperienceSection />
         <SkillsSection />
         <ContactSection />
       </div>

@@ -53,7 +53,7 @@ export default function ProjectCard({ project, index }: Props) {
           className="absolute inset-0 transition-opacity duration-300"
           style={{
             background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(8,8,8,0.72))',
-            opacity: imgHov ? 0.25 : 1,
+            opacity: imgHov ? 0.1 : 1,
           }}
         />
 
@@ -129,7 +129,7 @@ export default function ProjectCard({ project, index }: Props) {
 
       {/* ── Text — fades out when image expands ───────────── */}
       <motion.div
-        animate={{ opacity: imgHov ? 0 : 1 }}
+        animate={{ opacity: imgHov ? 1 : 1 }}
         transition={{ duration: 0.2 }}
         className="flex flex-col gap-3 p-4"
         style={{ pointerEvents: imgHov ? 'none' : 'auto' }}
